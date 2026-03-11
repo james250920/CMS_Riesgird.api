@@ -1,0 +1,6 @@
+@CMS_Riesgird.api_HostAddress = http://localhost:5050
+
+GET {{CMS_Riesgird.api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
