@@ -1,5 +1,6 @@
 using CMS_Riesgird.Core.Core.Interfaces;
 using CMS_Riesgird.Core.Core.Services;
+using CMS_Riesgird.Core.Infrastructure.Middleware;
 using CMS_Riesgird.Core.Infrastructure.Repositories;
 using CMS_Riesgird.Core.Infrastructure.Shared;
 using CMS_Riesgird.Infrastructure.Data;
@@ -20,6 +21,18 @@ builder.Services.AddDbContext<RiesgirdDbContext>(options =>
 
 // Controllers
 builder.Services.AddControllers();
+
+//cors
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        policy =>
+        {
+            policy.AllowAnyOrigin()
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
 
 // Swagger
 builder.Services.AddEndpointsApiExplorer();
@@ -50,6 +63,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowAll");
+
+app.UseMiddleware<RequestLoggingMiddleware>();
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseAuthentication();
 app.UseAuthorization();
