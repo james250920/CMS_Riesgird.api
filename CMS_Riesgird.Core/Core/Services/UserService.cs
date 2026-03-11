@@ -53,7 +53,7 @@ namespace CMS_Riesgird.Core.Core.Services
             if (user == null)
                 return null;
 
-            bool isPasswordValid = PasswordHasher.Verify(dto.PasswordHash, user.PasswordHash);
+            bool isPasswordValid = PasswordHasher.Verify(user.PasswordHash, dto.Password);
 
             if (!isPasswordValid)
                 return null;

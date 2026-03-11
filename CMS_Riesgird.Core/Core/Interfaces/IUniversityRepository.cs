@@ -1,15 +1,13 @@
 ﻿using CMS_Riesgird.Domain.Models;
 
-namespace CMS_Riesgird.Core.Infrastructure.Repositories
+namespace CMS_Riesgird.Core.Core.Interfaces
 {
     public interface IUniversityRepository
     {
-        Task AddUniversityAsync(Universities university);
-        Task<Universities> Delete(string id);
-        Task DeleteUniversityAsync(string id);
-        Task<IEnumerable<Universities>> GetActiveUniversitiesAsync();
         Task<IEnumerable<Universities>> GetAllUniversitiesAsync();
-        Task<Universities?> GetUniversityByIdAsync(string id);
+        Task<Universities?> GetUniversityByIdAsync(Guid id);
+        Task AddUniversityAsync(Universities university);
         Task UpdateUniversityAsync(Universities university);
+        Task DeleteUniversityAsync(Guid id);
     }
 }

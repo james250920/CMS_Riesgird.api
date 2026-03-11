@@ -29,6 +29,8 @@ namespace CMS_Riesgird.Core.Infrastructure.Shared
             var header = new JwtHeader(sc);
 
             var roleName = user.Role?.Name ?? "User";
+            var roleId = user.RoleId.ToString();
+            var roleLevel = user.Role?.Level.ToString() ?? "0";
 
             var claims = new[] {
               new Claim(ClaimTypes.Name, user.FullName),
@@ -36,6 +38,8 @@ namespace CMS_Riesgird.Core.Infrastructure.Shared
               new Claim(ClaimTypes.Locality, user.Position ?? string.Empty),
               new Claim(ClaimTypes.Role, roleName),
               new Claim("UserId",user.Id.ToString()),
+              new Claim("roleId", roleId),
+              new Claim("level", roleLevel)
           };
 
             var payload = new JwtPayload(

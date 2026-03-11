@@ -50,11 +50,12 @@ builder.Services.AddSharedInfrastructure(configuration);
 // Repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+builder.Services.AddScoped<IUniversityRepository, UniversityRepository>();
 
 // Services
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IRoleService, RoleService>();
-
+builder.Services.AddScoped<IUniversityService, UniversityService>();
 // ------------------------------------------------------
 var app = builder.Build();
 
