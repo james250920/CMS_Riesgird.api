@@ -21,6 +21,10 @@ builder.Services.AddDbContext<RiesgirdDbContext>(options =>
 
 // Controllers
 builder.Services.AddControllers();
+builder.Services.Configure<RouteOptions>(options =>
+{
+    options.LowercaseUrls = true;
+});
 
 //cors
 builder.Services.AddCors(options =>

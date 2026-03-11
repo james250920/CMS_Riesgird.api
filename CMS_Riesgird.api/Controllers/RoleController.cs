@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CMS_Riesgird.api.Controllers
 {
-    [Route("api/v1/[controller]")]
+    [Route("api/v1/roles")]
     [ApiController]
     public class RoleController : ControllerBase
     {
