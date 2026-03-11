@@ -25,15 +25,12 @@ namespace CMS_Riesgird.Core.Infrastructure.Repositories
                 .Include(p => p.RolePermissions)
                 .ToListAsync();
         }
-        public async Task<Roles?> GetRoleByIdAsync(string id)
+
+        public async Task<Roles?> GetRoleByIdAsync(Guid id)
         {
-            if (!Guid.TryParse(id, out var guidId))
-            {
-                return null;
-            }
             return await _context.Roles
                 .Include(p => p.RolePermissions)
-                .FirstOrDefaultAsync(r => r.Id == guidId);
+                .FirstOrDefaultAsync(r => r.Id == id);
         }
 
         public async Task AddRoleAsync(Roles role)
@@ -48,13 +45,9 @@ namespace CMS_Riesgird.Core.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteRoleAsync(string id)
+        public async Task DeleteRoleAsync(Guid id)
         {
-            if (!Guid.TryParse(id, out var guidId))
-            {
-                return;
-            }
-            var role = await _context.Roles.FindAsync(guidId);
+            var role = await _context.Roles.FindAsync(id);
             if (role != null)
             {
                 _context.Roles.Remove(role);

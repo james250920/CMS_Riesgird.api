@@ -11,6 +11,9 @@ var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 var connectionString = configuration.GetConnectionString("DefaultConnection");
 
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+
 // DbContext PostgreSQL
 builder.Services.AddDbContext<RiesgirdDbContext>(options =>
     options.UseNpgsql(connectionString));
@@ -29,9 +32,11 @@ builder.Services.AddSharedInfrastructure(configuration);
 
 // Repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 
 // Services
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IRoleService, RoleService>();
 
 // ------------------------------------------------------
 var app = builder.Build();
