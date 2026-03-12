@@ -19,7 +19,7 @@ namespace CMS_Riesgird.api.Controllers
         public async Task<IActionResult> GetAll()
         {
             var roles = await _roleService.GetAllRoles();
-            return Ok(roles);
+            return Ok(new ApiResponse<IEnumerable<RoleResponseDto>>(roles, true, "Lista de roles."));
         }
 
         [HttpGet("{id}")]
@@ -27,8 +27,8 @@ namespace CMS_Riesgird.api.Controllers
         {
             var role = await _roleService.GetRoleById(id);
             if (role == null)
-                return NotFound();
-            return Ok(role);
+                return NotFound(new ApiResponse<object>(false, "Rol no encontrado."));
+            return Ok(new ApiResponse<RoleResponseDto>(role, true, "Rol encontrado."));
         }
 
         [HttpPost]
@@ -36,16 +36,16 @@ namespace CMS_Riesgird.api.Controllers
         {
             if (dto == null || string.IsNullOrEmpty(dto.Name))
             {
-                return BadRequest("El nombre del rol es requerido");
+                return BadRequest(new ApiResponse<object>(false, "El nombre del rol es requerido."));
             }
             try
             {
                 var roleId = await _roleService.CreateRole(dto);
-                return Ok(new { RoleId = roleId });
+                return Ok(new ApiResponse<object>(new { RoleId = roleId }, true, "Rol creado correctamente."));
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new ApiResponse<object>(false, ex.Message));
             }
         }
 
@@ -54,16 +54,16 @@ namespace CMS_Riesgird.api.Controllers
         {
             if (dto == null || id != dto.Id)
             {
-                return BadRequest("Id del rol no coincide con el Id en el cuerpo de la solicitud");
+                return BadRequest(new ApiResponse<object>(false, "Id del rol no coincide con el Id en el cuerpo de la solicitud."));
             }
             try
             {
                 await _roleService.UpdateRole(id, dto);
-                return NoContent();
+                return Ok(new ApiResponse<object>(true, "Rol actualizado correctamente."));
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new ApiResponse<object>(false, ex.Message));
             }
         }
 
@@ -73,11 +73,11 @@ namespace CMS_Riesgird.api.Controllers
             try
             {
                 await _roleService.DeleteRole(id);
-                return NoContent();
+                return Ok(new ApiResponse<object>(true, "Rol eliminado correctamente."));
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new ApiResponse<object>(false, ex.Message));
             }
         }
     }

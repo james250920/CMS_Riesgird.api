@@ -3,6 +3,7 @@ using CMS_Riesgird.Core.Core.Services;
 using CMS_Riesgird.Core.Infrastructure.Middleware;
 using CMS_Riesgird.Core.Infrastructure.Repositories;
 using CMS_Riesgird.Core.Infrastructure.Shared;
+using CMS_Riesgird.Core.Infrastructure.Storage;
 using CMS_Riesgird.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -56,6 +57,7 @@ builder.Services.AddScoped<IUniversityRepository, UniversityRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<IUniversityService, UniversityService>();
+builder.Services.AddScoped<IMinioService, MinioService>();
 // ------------------------------------------------------
 var app = builder.Build();
 

@@ -21,32 +21,31 @@ namespace CMS_Riesgird.api.Controllers
         {
             if (dto == null || string.IsNullOrEmpty(dto.Email) || string.IsNullOrEmpty(dto.Password))
             {
-                return BadRequest("email y contraseña requerida");
+                return BadRequest(new ApiResponse<object>(false, "Debe ingresar email y contraseña."));
             }
             var result = await _userService.Login(dto);
             if (result == null)
             {
-                return Unauthorized("email o contraseña invalida");
+                return Unauthorized(new ApiResponse<object>(false, "Email o contraseña inválida."));
             }
-            return Ok(result);
+            return Ok(new ApiResponse<UserLoginResponseDto>(result, true, "Inicio de sesión exitoso."));
         }
 
-        //[Authorize(Roles = "Admin")]
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterUserDto dto)
         {
             if (dto == null || string.IsNullOrEmpty(dto.Email) || string.IsNullOrEmpty(dto.PasswordHash) || string.IsNullOrEmpty(dto.FullName))
             {
-                return BadRequest("email, contraseña y nombre completo son requeridos");
+                return BadRequest(new ApiResponse<object>(false, "Email, contraseña y nombre completo son requeridos."));
             }
             try
             {
                 var userId = await _userService.Register(dto);
-                return Ok(new { UserId = userId });
+                return Ok(new ApiResponse<object>(new { UserId = userId }, true, "Usuario registrado correctamente."));
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new ApiResponse<object>(false, ex.Message));
             }
         }
 
@@ -55,14 +54,15 @@ namespace CMS_Riesgird.api.Controllers
         {
             var user = await _userService.GetUserById(id);
             if (user == null)
-                return NotFound();
-            return Ok(user);
+                return NotFound(new ApiResponse<object>(false, "Usuario no encontrado."));
+            return Ok(new ApiResponse<UserResponseDto>(user, true, "Usuario encontrado."));
         }
+
         [HttpGet()]
         public async Task<IActionResult> GetAll()
         {
             var users = await _userService.GetAllUsers();
-            return Ok(users);
+            return Ok(new ApiResponse<IEnumerable<UserResponseDto>>(users, true, "Lista de usuarios."));
         }
 
         [HttpPatch("{id}")]
@@ -70,16 +70,16 @@ namespace CMS_Riesgird.api.Controllers
         {
             if (dto == null || id != dto.Id)
             {
-                return BadRequest("Id del usuario no coincide con el Id en el cuerpo de la solicitud");
+                return BadRequest(new ApiResponse<object>(false, "Id del usuario no coincide con el Id en el cuerpo de la solicitud."));
             }
             try
             {
                 await _userService.UpdateUser(id, dto);
-                return NoContent();
+                return Ok(new ApiResponse<object>(true, "Usuario actualizado correctamente."));
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);          
+                return BadRequest(new ApiResponse<object>(false, ex.Message));
             }
         }
 
@@ -89,11 +89,11 @@ namespace CMS_Riesgird.api.Controllers
             try
             {
                 await _userService.DeleteUser(id);
-                return NoContent();
+                return Ok(new ApiResponse<object>(true, "Usuario eliminado correctamente."));
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new ApiResponse<object>(false, ex.Message));
             }
         }
     }

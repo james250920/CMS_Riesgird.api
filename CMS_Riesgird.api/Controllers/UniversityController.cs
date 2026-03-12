@@ -19,7 +19,7 @@ namespace CMS_Riesgird.api.Controllers
         public async Task<IActionResult> GetAll()
         {
             var universities = await _universityService.GetAllUniversities();
-            return Ok(universities);
+            return Ok(new ApiResponse<IEnumerable<UniversityResponseDto>>(universities, true, "Lista de universidades."));
         }
 
         [HttpGet("{id}")]
@@ -27,8 +27,8 @@ namespace CMS_Riesgird.api.Controllers
         {
             var university = await _universityService.GetUniversityById(id);
             if (university == null)
-                return NotFound();
-            return Ok(university);
+                return NotFound(new ApiResponse<object>(false, "Universidad no encontrada."));
+            return Ok(new ApiResponse<UniversityResponseDto>(university, true, "Universidad encontrada."));
         }
 
         [HttpPost]
@@ -36,17 +36,17 @@ namespace CMS_Riesgird.api.Controllers
         {
             if (dto == null || string.IsNullOrEmpty(dto.Name))
             {
-                return BadRequest("El nombre de la universidad es requerido");
+                return BadRequest(new ApiResponse<object>(false, "El nombre de la universidad es requerido."));
             }
             try
             {
                 var universityId = await _universityService.CreateUniversity(dto);
-                return Ok(new { UniversityId = universityId });
+                return Ok(new ApiResponse<object>(new { UniversityId = universityId }, true, "Universidad creada correctamente."));
             }
             catch (Exception ex)
             {
                 var errorMessage = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
-                return BadRequest(errorMessage);
+                return BadRequest(new ApiResponse<object>(false, errorMessage));
             }
         }
 
@@ -55,16 +55,16 @@ namespace CMS_Riesgird.api.Controllers
         {
             if (dto == null || id != dto.Id)
             {
-                return BadRequest("Id de la universidad no coincide con el Id en el cuerpo de la solicitud");
+                return BadRequest(new ApiResponse<object>(false, "Id de la universidad no coincide con el Id en el cuerpo de la solicitud."));
             }
             try
             {
                 await _universityService.UpdateUniversity(id, dto);
-                return NoContent();
+                return Ok(new ApiResponse<object>(true, "Universidad actualizada correctamente."));
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new ApiResponse<object>(false, ex.Message));
             }
         }
 
@@ -74,11 +74,11 @@ namespace CMS_Riesgird.api.Controllers
             try
             {
                 await _universityService.DeleteUniversity(id);
-                return NoContent();
+                return Ok(new ApiResponse<object>(true, "Universidad eliminada correctamente."));
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new ApiResponse<object>(false, ex.Message));
             }
         }
     }
