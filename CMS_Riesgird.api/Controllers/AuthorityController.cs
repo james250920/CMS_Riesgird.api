@@ -1,4 +1,5 @@
 using CMS_Riesgird.Core.Core.DTOs;
+using CMS_Riesgird.Core.Core.DTOs;
 using CMS_Riesgird.Core.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -49,6 +50,10 @@ namespace CMS_Riesgird.api.Controllers
             {
                 return BadRequest(new ApiResponse<object>(false, "El ID de la universidad es requerido."));
             }
+            if (string.IsNullOrEmpty(dto.Role))
+            {
+                return BadRequest(new ApiResponse<object>(false, "El rol de la autoridad es requerido."));
+            }
             try
             {
                 var authorityId = await _authorityService.CreateAuthority(dto);
@@ -71,6 +76,10 @@ namespace CMS_Riesgird.api.Controllers
             if (string.IsNullOrEmpty(dto.FullName))
             {
                 return BadRequest(new ApiResponse<object>(false, "El nombre completo de la autoridad es requerido."));
+            }
+            if (string.IsNullOrEmpty(dto.Role))
+            {
+                return BadRequest(new ApiResponse<object>(false, "El rol de la autoridad es requerido."));
             }
             try
             {

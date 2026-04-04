@@ -1,4 +1,5 @@
 using CMS_Riesgird.Core.Core.DTOs;
+using CMS_Riesgird.Core.Core.DTOs;
 using CMS_Riesgird.Core.Core.Interfaces;
 using CMS_Riesgird.Domain.Models;
 
@@ -41,6 +42,7 @@ namespace CMS_Riesgird.Core.Core.Services
                 Id = Guid.NewGuid(),
                 UniversityId = dto.UniversityId,
                 FullName = dto.FullName,
+                Role = dto.Role,
                 AcademicDegree = dto.AcademicDegree,
                 Email = dto.Email,
                 Phone = dto.Phone,
@@ -68,6 +70,7 @@ namespace CMS_Riesgird.Core.Core.Services
 
             authority.UniversityId = dto.UniversityId;
             authority.FullName = dto.FullName ?? authority.FullName;
+            authority.Role = dto.Role ?? authority.Role;
             authority.AcademicDegree = dto.AcademicDegree ?? authority.AcademicDegree;
             authority.Email = dto.Email ?? authority.Email;
             authority.Phone = dto.Phone ?? authority.Phone;
@@ -96,6 +99,7 @@ namespace CMS_Riesgird.Core.Core.Services
                 Id = authority.Id,
                 UniversityId = authority.UniversityId,
                 FullName = authority.FullName,
+                Role = authority.Role,
                 AcademicDegree = authority.AcademicDegree,
                 Email = authority.Email,
                 Phone = authority.Phone,

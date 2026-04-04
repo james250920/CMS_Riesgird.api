@@ -14,6 +14,8 @@ public partial class TechnicalTeamMembers
 
     public string FullName { get; set; } = null!;
 
+    public string? TeamType { get; set; }
+
     public string? Email { get; set; }
 
     public string? Phone { get; set; }

@@ -565,40 +565,43 @@ public partial class RiesgirdDbContext : DbContext
             entity.Property(e => e.Id)
                 .HasDefaultValueSql("panel_red.uuid_generate_v4()")
                 .HasColumnName("id");
-            entity.Property(e => e.AcademicDegree)
+            entity.Property(e => e.UniversityId).HasColumnName("university_id");
+            entity.Property(e => e.Role)
                 .HasMaxLength(100)
-                .HasColumnName("academic_degree");
-            entity.Property(e => e.CreatedAt)
-                .HasDefaultValueSql("now()")
-                .HasColumnName("created_at");
-            entity.Property(e => e.Dni)
-                .HasMaxLength(50)
-                .HasColumnName("dni");
-            entity.Property(e => e.Email)
-                .HasMaxLength(255)
-                .HasColumnName("email");
-            entity.Property(e => e.EndDate).HasColumnName("end_date");
+                .HasColumnName("role");
             entity.Property(e => e.FullName)
                 .HasMaxLength(255)
                 .HasColumnName("full_name");
-            entity.Property(e => e.IsActive)
-                .HasDefaultValue(true)
-                .HasColumnName("is_active");
-            entity.Property(e => e.IsCurrent)
-                .HasDefaultValue(true)
-                .HasColumnName("is_current");
-            entity.Property(e => e.IsPublic)
-                .HasDefaultValue(true)
-                .HasColumnName("is_public");
+            entity.Property(e => e.AcademicDegree)
+                .HasMaxLength(100)
+                .HasColumnName("academic_degree");
+            entity.Property(e => e.Email)
+                .HasMaxLength(255)
+                .HasColumnName("email");
             entity.Property(e => e.Phone)
                 .HasMaxLength(50)
                 .HasColumnName("phone");
+            entity.Property(e => e.Dni)
+                .HasMaxLength(50)
+                .HasColumnName("dni");
             entity.Property(e => e.PhotoUrl).HasColumnName("photo_url");
             entity.Property(e => e.Position)
                 .HasMaxLength(255)
                 .HasColumnName("position");
             entity.Property(e => e.StartDate).HasColumnName("start_date");
-            entity.Property(e => e.UniversityId).HasColumnName("university_id");
+            entity.Property(e => e.EndDate).HasColumnName("end_date");
+            entity.Property(e => e.IsCurrent)
+                .HasDefaultValue(true)
+                .HasColumnName("is_current");
+            entity.Property(e => e.IsActive)
+                .HasDefaultValue(true)
+                .HasColumnName("is_active");
+            entity.Property(e => e.IsPublic)
+                .HasDefaultValue(true)
+                .HasColumnName("is_public");
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("now()")
+                .HasColumnName("created_at");
             entity.Property(e => e.UpdatedAt)
                 .HasDefaultValueSql("now()")
                 .HasColumnName("updated_at");
@@ -1655,6 +1658,9 @@ public partial class RiesgirdDbContext : DbContext
             entity.Property(e => e.FullName)
                 .HasMaxLength(255)
                 .HasColumnName("full_name");
+            entity.Property(e => e.TeamType)
+                .HasMaxLength(100)
+                .HasColumnName("team_type");
             entity.Property(e => e.IsActive)
                 .HasDefaultValue(true)
                 .HasColumnName("is_active");

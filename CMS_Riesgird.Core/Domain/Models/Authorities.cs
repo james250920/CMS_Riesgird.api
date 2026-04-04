@@ -12,6 +12,8 @@ public partial class Authorities
 
     public Guid UniversityId { get; set; }
 
+    public string Role { get; set; } = null!;
+
     public string FullName { get; set; } = null!;
 
     public string? AcademicDegree { get; set; }
