@@ -38,6 +38,10 @@ namespace CMS_Riesgird.api.Controllers
             {
                 return BadRequest(new ApiResponse<object>(false, "El nombre de la universidad es requerido."));
             }
+            if (dto.CreatedBy == null || dto.CreatedBy == Guid.Empty)
+            {
+                return BadRequest(new ApiResponse<object>(false, "CreatedBy es requerido y debe ser un GUID válido."));
+            }
             try
             {
                 var universityId = await _universityService.CreateUniversity(dto);

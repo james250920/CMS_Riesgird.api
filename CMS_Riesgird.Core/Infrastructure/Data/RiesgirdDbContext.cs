@@ -108,10 +108,6 @@ public partial class RiesgirdDbContext : DbContext
 
     public virtual DbSet<VwUsersDetail> VwUsersDetail { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseNpgsql("Host=100.122.86.99;Port=5432;Database=riesgird_DB;Username=postgres;Password=cLZVroIwIxeBqUdb6NjrhVqfgBLbpBneutcOlcC3FwS1tAMUFJnenm2PpTKOmWIF");
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder
@@ -2067,7 +2063,9 @@ public partial class RiesgirdDbContext : DbContext
             entity.Property(e => e.ApplicantName)
                 .HasMaxLength(255)
                 .HasColumnName("applicant_name");
-            entity.Property(e => e.ApplicationDate).HasColumnName("application_date");
+            entity.Property(e => e.ApplicationDate)
+                .HasColumnType("date")
+                .HasColumnName("application_date");
             entity.Property(e => e.ApplicationNumber)
                 .HasMaxLength(100)
                 .HasColumnName("application_number");
@@ -2078,7 +2076,9 @@ public partial class RiesgirdDbContext : DbContext
             entity.Property(e => e.CertificateNumber)
                 .HasMaxLength(100)
                 .HasColumnName("certificate_number");
-            entity.Property(e => e.CreatedAt).HasColumnName("created_at");
+            entity.Property(e => e.CreatedAt)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("created_at");
             entity.Property(e => e.DocumentsCount).HasColumnName("documents_count");
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.ReviewedByName)
@@ -2144,7 +2144,9 @@ public partial class RiesgirdDbContext : DbContext
                 .HasNoKey()
                 .ToView("vw_users_detail", "panel_red");
 
-            entity.Property(e => e.CreatedAt).HasColumnName("created_at");
+            entity.Property(e => e.CreatedAt)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("created_at");
             entity.Property(e => e.Email)
                 .HasMaxLength(255)
                 .HasColumnName("email");
@@ -2153,7 +2155,9 @@ public partial class RiesgirdDbContext : DbContext
                 .HasColumnName("full_name");
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.IsActive).HasColumnName("is_active");
-            entity.Property(e => e.LastLogin).HasColumnName("last_login");
+            entity.Property(e => e.LastLogin)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("last_login");
             entity.Property(e => e.Phone)
                 .HasMaxLength(50)
                 .HasColumnName("phone");

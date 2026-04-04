@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="CMS_Riesgird.api/CMS_Riesgird.api.csproj" />
   <Project Path="CMS_Riesgird.Core/CMS_Riesgird.Core.csproj" Id="e98a5b3c-96b0-4da6-8857-68d8797460f3" />
+  <Project Path="TestRiesgird.api/ApiRiesgird.test.csproj" Id="01333e11-7512-42e3-9984-6f186b6326e5" />
 </Solution>

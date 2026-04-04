@@ -52,11 +52,13 @@ builder.Services.AddSharedInfrastructure(configuration);
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 builder.Services.AddScoped<IUniversityRepository, UniversityRepository>();
+builder.Services.AddScoped<IAuthorityRepository, AuthorityRepository>();
 
 // Services
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<IUniversityService, UniversityService>();
+builder.Services.AddScoped<IAuthorityService, AuthorityService>();
 builder.Services.AddScoped<IMinioService, MinioService>();
 // ------------------------------------------------------
 var app = builder.Build();
@@ -73,8 +75,8 @@ app.UseHttpsRedirection();
 
 app.UseCors("AllowAll");
 
-app.UseMiddleware<RequestLoggingMiddleware>();
 app.UseMiddleware<ExceptionMiddleware>();
+app.UseMiddleware<RequestLoggingMiddleware>();
 
 app.UseAuthentication();
 app.UseAuthorization();
