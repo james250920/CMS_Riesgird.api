@@ -70,6 +70,7 @@ builder.Services.AddScoped<IAlbumPhotoRepository, AlbumPhotoRepository>();
 builder.Services.AddScoped<IVideoItemRepository, VideoItemRepository>();
 builder.Services.AddScoped<IThematicAxisRepository, ThematicAxisRepository>();
 builder.Services.AddScoped<IAllyRepository, AllyRepository>();
+builder.Services.AddScoped<IAchievementRepository, AchievementRepository>();
 
 // Services
 builder.Services.AddScoped<IUserService, UserService>();
@@ -93,6 +94,7 @@ builder.Services.AddScoped<IAlbumPhotoService, AlbumPhotoService>();
 builder.Services.AddScoped<IVideoItemService, VideoItemService>();
 builder.Services.AddScoped<IThematicAxisService, ThematicAxisService>();
 builder.Services.AddScoped<IAllyService, AllyService>();
+builder.Services.AddScoped<IAchievementService, AchievementService>();
 builder.Services.AddScoped<IMinioService, MinioService>();
 // ------------------------------------------------------
 var app = builder.Build();
