@@ -83,6 +83,13 @@ builder.Services.AddScoped<IInstitutionalContentRepository, InstitutionalContent
 builder.Services.AddScoped<INormativeDocumentRepository, NormativeDocumentRepository>();
 builder.Services.AddScoped<IApplicationDocumentRepository, ApplicationDocumentRepository>();
 builder.Services.AddScoped<IMembershipCertificateRepository, MembershipCertificateRepository>();
+builder.Services.AddScoped<IUserSessionRepository, UserSessionRepository>();
+builder.Services.AddScoped<IRolePermissionRepository, RolePermissionRepository>();
+builder.Services.AddScoped<IUserPermissionRepository, UserPermissionRepository>();
+builder.Services.AddScoped<IUniversityReportRepository, UniversityReportRepository>();
+builder.Services.AddScoped<IAuditLogRepository, AuditLogRepository>();
+builder.Services.AddScoped<IAuditLogChangeRepository, AuditLogChangeRepository>();
+builder.Services.AddScoped<IMembershipApplicationRepository, MembershipApplicationRepository>();
 
 // Services
 builder.Services.AddScoped<IUserService, UserService>();
@@ -119,6 +126,13 @@ builder.Services.AddScoped<IInstitutionalContentService, InstitutionalContentSer
 builder.Services.AddScoped<INormativeDocumentService, NormativeDocumentService>();
 builder.Services.AddScoped<IApplicationDocumentService, ApplicationDocumentService>();
 builder.Services.AddScoped<IMembershipCertificateService, MembershipCertificateService>();
+builder.Services.AddScoped<IUserSessionService, UserSessionService>();
+builder.Services.AddScoped<IRolePermissionService, RolePermissionService>();
+builder.Services.AddScoped<IUserPermissionService, UserPermissionService>();
+builder.Services.AddScoped<IUniversityReportService, UniversityReportService>();
+builder.Services.AddScoped<IAuditLogService, AuditLogService>();
+builder.Services.AddScoped<IAuditLogChangeService, AuditLogChangeService>();
+builder.Services.AddScoped<IMembershipApplicationService, MembershipApplicationService>();
 builder.Services.AddScoped<IMinioService, MinioService>();
 // ------------------------------------------------------
 var app = builder.Build();
