@@ -73,6 +73,10 @@ builder.Services.AddScoped<IAllyRepository, AllyRepository>();
 builder.Services.AddScoped<IAchievementRepository, AchievementRepository>();
 builder.Services.AddScoped<IManagementMemoryRepository, ManagementMemoryRepository>();
 builder.Services.AddScoped<IActivityRepository, ActivityRepository>();
+builder.Services.AddScoped<ICalendarEventRepository, CalendarEventRepository>();
+builder.Services.AddScoped<IAgendaItemRepository, AgendaItemRepository>();
+builder.Services.AddScoped<IMembershipRequirementRepository, MembershipRequirementRepository>();
+builder.Services.AddScoped<IDownloadableTemplateRepository, DownloadableTemplateRepository>();
 
 // Services
 builder.Services.AddScoped<IUserService, UserService>();
@@ -99,6 +103,10 @@ builder.Services.AddScoped<IAllyService, AllyService>();
 builder.Services.AddScoped<IAchievementService, AchievementService>();
 builder.Services.AddScoped<IManagementMemoryService, ManagementMemoryService>();
 builder.Services.AddScoped<IActivityService, ActivityService>();
+builder.Services.AddScoped<ICalendarEventService, CalendarEventService>();
+builder.Services.AddScoped<IAgendaItemService, AgendaItemService>();
+builder.Services.AddScoped<IMembershipRequirementService, MembershipRequirementService>();
+builder.Services.AddScoped<IDownloadableTemplateService, DownloadableTemplateService>();
 builder.Services.AddScoped<IMinioService, MinioService>();
 // ------------------------------------------------------
 var app = builder.Build();
