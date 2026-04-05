@@ -61,6 +61,7 @@ builder.Services.AddScoped<IForumEventRepository, ForumEventRepository>();
 builder.Services.AddScoped<IAgreementRepository, AgreementRepository>();
 builder.Services.AddScoped<IResearcherRepository, ResearcherRepository>();
 builder.Services.AddScoped<IPublicationRepository, PublicationRepository>();
+builder.Services.AddScoped<IExpertRepository, ExpertRepository>();
 
 // Services
 builder.Services.AddScoped<IUserService, UserService>();
@@ -75,6 +76,7 @@ builder.Services.AddScoped<IForumEventService, ForumEventService>();
 builder.Services.AddScoped<IAgreementService, AgreementService>();
 builder.Services.AddScoped<IResearcherService, ResearcherService>();
 builder.Services.AddScoped<IPublicationService, PublicationService>();
+builder.Services.AddScoped<IExpertService, ExpertService>();
 builder.Services.AddScoped<IMinioService, MinioService>();
 // ------------------------------------------------------
 var app = builder.Build();
