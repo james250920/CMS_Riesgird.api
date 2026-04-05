@@ -64,6 +64,7 @@ builder.Services.AddScoped<IPublicationRepository, PublicationRepository>();
 builder.Services.AddScoped<IExpertRepository, ExpertRepository>();
 builder.Services.AddScoped<ISpecializationProgramRepository, SpecializationProgramRepository>();
 builder.Services.AddScoped<ICommitteeMemberRepository, CommitteeMemberRepository>();
+builder.Services.AddScoped<ISpeakerRepository, SpeakerRepository>();
 
 // Services
 builder.Services.AddScoped<IUserService, UserService>();
@@ -81,6 +82,7 @@ builder.Services.AddScoped<IPublicationService, PublicationService>();
 builder.Services.AddScoped<IExpertService, ExpertService>();
 builder.Services.AddScoped<ISpecializationProgramService, SpecializationProgramService>();
 builder.Services.AddScoped<ICommitteeMemberService, CommitteeMemberService>();
+builder.Services.AddScoped<ISpeakerService, SpeakerService>();
 builder.Services.AddScoped<IMinioService, MinioService>();
 // ------------------------------------------------------
 var app = builder.Build();
