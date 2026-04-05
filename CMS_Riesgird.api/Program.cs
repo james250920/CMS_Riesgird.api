@@ -71,6 +71,7 @@ builder.Services.AddScoped<IVideoItemRepository, VideoItemRepository>();
 builder.Services.AddScoped<IThematicAxisRepository, ThematicAxisRepository>();
 builder.Services.AddScoped<IAllyRepository, AllyRepository>();
 builder.Services.AddScoped<IAchievementRepository, AchievementRepository>();
+builder.Services.AddScoped<IManagementMemoryRepository, ManagementMemoryRepository>();
 
 // Services
 builder.Services.AddScoped<IUserService, UserService>();
@@ -95,6 +96,7 @@ builder.Services.AddScoped<IVideoItemService, VideoItemService>();
 builder.Services.AddScoped<IThematicAxisService, ThematicAxisService>();
 builder.Services.AddScoped<IAllyService, AllyService>();
 builder.Services.AddScoped<IAchievementService, AchievementService>();
+builder.Services.AddScoped<IManagementMemoryService, ManagementMemoryService>();
 builder.Services.AddScoped<IMinioService, MinioService>();
 // ------------------------------------------------------
 var app = builder.Build();
