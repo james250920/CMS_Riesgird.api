@@ -77,6 +77,12 @@ builder.Services.AddScoped<ICalendarEventRepository, CalendarEventRepository>();
 builder.Services.AddScoped<IAgendaItemRepository, AgendaItemRepository>();
 builder.Services.AddScoped<IMembershipRequirementRepository, MembershipRequirementRepository>();
 builder.Services.AddScoped<IDownloadableTemplateRepository, DownloadableTemplateRepository>();
+builder.Services.AddScoped<IApplicationStatusHistoryRepository, ApplicationStatusHistoryRepository>();
+builder.Services.AddScoped<IEventPhotoRepository, EventPhotoRepository>();
+builder.Services.AddScoped<IInstitutionalContentRepository, InstitutionalContentRepository>();
+builder.Services.AddScoped<INormativeDocumentRepository, NormativeDocumentRepository>();
+builder.Services.AddScoped<IApplicationDocumentRepository, ApplicationDocumentRepository>();
+builder.Services.AddScoped<IMembershipCertificateRepository, MembershipCertificateRepository>();
 
 // Services
 builder.Services.AddScoped<IUserService, UserService>();
@@ -107,6 +113,12 @@ builder.Services.AddScoped<ICalendarEventService, CalendarEventService>();
 builder.Services.AddScoped<IAgendaItemService, AgendaItemService>();
 builder.Services.AddScoped<IMembershipRequirementService, MembershipRequirementService>();
 builder.Services.AddScoped<IDownloadableTemplateService, DownloadableTemplateService>();
+builder.Services.AddScoped<IApplicationStatusHistoryService, ApplicationStatusHistoryService>();
+builder.Services.AddScoped<IEventPhotoService, EventPhotoService>();
+builder.Services.AddScoped<IInstitutionalContentService, InstitutionalContentService>();
+builder.Services.AddScoped<INormativeDocumentService, NormativeDocumentService>();
+builder.Services.AddScoped<IApplicationDocumentService, ApplicationDocumentService>();
+builder.Services.AddScoped<IMembershipCertificateService, MembershipCertificateService>();
 builder.Services.AddScoped<IMinioService, MinioService>();
 // ------------------------------------------------------
 var app = builder.Build();
