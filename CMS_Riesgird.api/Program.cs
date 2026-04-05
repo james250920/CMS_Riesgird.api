@@ -65,6 +65,9 @@ builder.Services.AddScoped<IExpertRepository, ExpertRepository>();
 builder.Services.AddScoped<ISpecializationProgramRepository, SpecializationProgramRepository>();
 builder.Services.AddScoped<ICommitteeMemberRepository, CommitteeMemberRepository>();
 builder.Services.AddScoped<ISpeakerRepository, SpeakerRepository>();
+builder.Services.AddScoped<IPhotoAlbumRepository, PhotoAlbumRepository>();
+builder.Services.AddScoped<IAlbumPhotoRepository, AlbumPhotoRepository>();
+builder.Services.AddScoped<IVideoItemRepository, VideoItemRepository>();
 
 // Services
 builder.Services.AddScoped<IUserService, UserService>();
@@ -83,6 +86,9 @@ builder.Services.AddScoped<IExpertService, ExpertService>();
 builder.Services.AddScoped<ISpecializationProgramService, SpecializationProgramService>();
 builder.Services.AddScoped<ICommitteeMemberService, CommitteeMemberService>();
 builder.Services.AddScoped<ISpeakerService, SpeakerService>();
+builder.Services.AddScoped<IPhotoAlbumService, PhotoAlbumService>();
+builder.Services.AddScoped<IAlbumPhotoService, AlbumPhotoService>();
+builder.Services.AddScoped<IVideoItemService, VideoItemService>();
 builder.Services.AddScoped<IMinioService, MinioService>();
 // ------------------------------------------------------
 var app = builder.Build();
