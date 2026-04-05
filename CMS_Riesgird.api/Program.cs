@@ -59,6 +59,7 @@ builder.Services.AddScoped<IAssemblyRepository, AssemblyRepository>();
 builder.Services.AddScoped<ICongressRepository, CongressRepository>();
 builder.Services.AddScoped<IForumEventRepository, ForumEventRepository>();
 builder.Services.AddScoped<IAgreementRepository, AgreementRepository>();
+builder.Services.AddScoped<IResearcherRepository, ResearcherRepository>();
 
 // Services
 builder.Services.AddScoped<IUserService, UserService>();
@@ -71,6 +72,7 @@ builder.Services.AddScoped<IAssemblyService, AssemblyService>();
 builder.Services.AddScoped<ICongressService, CongressService>();
 builder.Services.AddScoped<IForumEventService, ForumEventService>();
 builder.Services.AddScoped<IAgreementService, AgreementService>();
+builder.Services.AddScoped<IResearcherService, ResearcherService>();
 builder.Services.AddScoped<IMinioService, MinioService>();
 // ------------------------------------------------------
 var app = builder.Build();
